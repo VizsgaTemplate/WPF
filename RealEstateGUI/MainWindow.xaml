@@ -1,0 +1,43 @@
+﻿<Window x:Class="RealEstateGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RealEstateGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="lbSellers">
+            <ListBox.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" DataContext="{Binding ElementName=lbSellers, Path=SelectedItem}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Eladó neve:" Grid.Row="0"/>
+            <Label Content="Eladó telefonszáma:" Grid.Row="1"/>
+            <Button Content="Hírdetések betöltése" Grid.Row="2" Grid.ColumnSpan="2" Click="LoadAds"/>
+            <Label Content="Hírdetések száma:" Grid.Row="3"/>
+            <Label x:Name="lblName" Grid.Column="1" Content="{Binding name}"/>
+            <Label x:Name="lblPhone" Grid.Row="1" Grid.Column="1" Content="{Binding phone}"/>
+            <Label x:Name="lblCount" Content="0" Grid.Row="3" Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</Window>
